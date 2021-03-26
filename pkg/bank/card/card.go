@@ -1,22 +1,13 @@
 package card
 import "bank/pkg/bank/types"
 
-func Total(cards []types.Card) types.Money {
-	total := types.Money(0)
-
+func PaymentSources(cards []types.Card)[]types.PaymentSource{
+	var operations []types.PaymentSource
 	for _, card := range cards {
-
-		if !card.Active {
-			continue
+		if card.Balance > 0 && card.Active == true {
+		operations=append(operations, types.PaymentSource{ Type:"card", Number:card.PAN, Balance:card.Balance})
 		}
-		
-		if card.Balance <=0 {
-			continue
-		}
-		total +=card.Balance
-		
-		
 	}
-	return total
+	return operations
 }
 

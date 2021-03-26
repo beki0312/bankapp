@@ -3,63 +3,31 @@ import (
 	"bank/pkg/bank/types"
 	"fmt"
 )
-func ExampleTotal(){
-	
-	fmt.Println(Total([]types.Card{
-		{
-			Balance: 100000,
-			Active: true,
-		},
-	}))
-	fmt.Println(Total([]types.Card{
-		{
-			Balance:100000,
-			Active:true,
-		},
-		{
-				Balance: 200000,
-				Active: true,
-			},
-	
-	}))
-	fmt.Println(Total([]types.Card{
-		{
-			Balance: 100000,
-			Active: false,
-		},
-
-	}))
-	fmt.Println(Total([]types.Card{
-		{
-			Balance: -100000,
-			Active: true,
-		},
-	}))
-	// Output:
-	//100000
-	//300000
-	//0
-	//0
-	
-}
-/*
-	cards := [] types.Card{
+func ExamplePaymentSource(){
+	var NewCard types.PaymentSource
+	payments := [] types.Card{
 	{
+		PAN: "10",
 		Balance:500,
 		Active:true,
 	},
 	{
-			Balance: -1,
+			PAN: "11",
+			Balance: 100,
 			Active: true,
 		},
 	{
+		PAN: "12",
 		Balance: 500,
 		Active: false,
 	},
-
 	}
-
-
-	fmt.Println(Total(cards))
-//output: 500
-*/
+	maxes :=PaymentSources(payments)
+	for _, max := range maxes {
+		NewCard.Number=max.Number
+	fmt.Println(NewCard.Number)
+	}
+	//Output:
+	//10
+	//11
+}
